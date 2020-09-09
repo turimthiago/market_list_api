@@ -1,6 +1,6 @@
 import { UserRepository } from "../../repositories/UserRepository";
-import { CreateUserRequestDTO } from "./CreateUserDto";
 import { User } from "../../entities/User";
+import { CreateUserRequestDTO } from "./CreateUserDTO";
 
 export class CreateUserUseCase {
   constructor(private usersRepository: UserRepository) {}
