@@ -1,6 +1,7 @@
 import { UserRepository } from "../../repositories/UserRepository";
 import { User } from "../../entities/User";
 import { CreateUserRequestDTO } from "./CreateUserDTO";
+import { UserAlreadyExistsError } from "./CreateUserError";
 
 export class CreateUserUseCase {
   constructor(private usersRepository: UserRepository) {}
@@ -9,10 +10,11 @@ export class CreateUserUseCase {
       data.email
     );
 
-    if (userAlreadyExists) throw new Error("Usuário já cadastrado.");
+    if (userAlreadyExists)
+      throw new UserAlreadyExistsError("Usuário já cadastrado.");
 
     const user = new User(data);
 
-    await this.usersRepository.save(user);
+    return await this.usersRepository.save(user);
   }
 }
