@@ -5,10 +5,11 @@ import { UserAlreadyExistsError } from "./CreateUserError";
 
 export class CreateUserUseCase {
   constructor(private usersRepository: UserRepository) {}
-  async execute(data: CreateUserRequestDTO) {
+  async execute(data: CreateUserRequestDTO): Promise<User> {
     const userAlreadyExists = await this.usersRepository.findByEmail(
       data.email
     );
+    
 
     if (userAlreadyExists)
       throw new UserAlreadyExistsError("Usuário já cadastrado.");

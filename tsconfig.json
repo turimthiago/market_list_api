@@ -19,5 +19,5 @@
       // "@controllers/*":["./src/controllers"]
     }
   },
-  "include": ["src/**/*"]
+  "include": ["src"]
 }
