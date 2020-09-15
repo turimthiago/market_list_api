@@ -1,5 +1,5 @@
+import { User } from "src/domain/user/User";
 import { UserRepository } from "../../repositories/UserRepository";
-import { User } from "../../entities/User";
 import { CreateUserRequestDTO } from "./CreateUserDTO";
 import { UserAlreadyExistsError } from "./CreateUserError";
 
@@ -9,7 +9,6 @@ export class CreateUserUseCase {
     const userAlreadyExists = await this.usersRepository.findByEmail(
       data.email
     );
-    
 
     if (userAlreadyExists)
       throw new UserAlreadyExistsError("Usuário já cadastrado.");

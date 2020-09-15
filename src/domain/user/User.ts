@@ -1,6 +1,14 @@
 import { v4 } from "uuid";
-import { Entity, PrimaryGeneratedColumn, Column, PrimaryColumn } from "typeorm";
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  PrimaryColumn,
+  BeforeInsert,
+  BeforeUpdate,
+} from "typeorm";
 
+import bcrypt from "bcryptjs";
 @Entity("users")
 export class User {
   @PrimaryColumn()
@@ -18,5 +26,11 @@ export class User {
     if (!this.id) {
       this.id = v4();
     }
+  }
+
+  @BeforeInsert()
+  @BeforeUpdate()
+  private hashPassword() {
+    this.password = bcrypt.hashSync(this.password, 8);
   }
 }

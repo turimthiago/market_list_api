@@ -1,6 +1,6 @@
 import { UserRepository } from "../UserRepository";
-import { User } from "src/entities/User";
 import { getRepository } from "typeorm";
+import { User } from "src/domain/user/User";
 
 export class UserRepositoryDatabase implements UserRepository {
   constructor() {}

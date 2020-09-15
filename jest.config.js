@@ -3,9 +3,10 @@ module.exports = {
   testEnvironment: "node",
   clearMocks: true,
   preset: "ts-jest",
+  collectCoverage: true,
   collectCoverageFrom: ["src/usecases/**/*.ts"],
   coverageDirectory: "__tests__/coverage",
-  coverageReporters: ["json", "lcov "],
+  coverageProvider: "v8",
   testMatch: ["<rootDir>/__tests__/**/*.spec.ts"],
   transform: {
     "ˆ.+\\.ts$": "ts-jest",
