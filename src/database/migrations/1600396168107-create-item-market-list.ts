@@ -24,6 +24,7 @@ export class createItemMarketList1600396168107 implements MigrationInterface {
           {
             name: "checked",
             type: "boolean",
+            default:"false"
           },
         ],
       })
