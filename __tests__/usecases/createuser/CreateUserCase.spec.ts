@@ -1,7 +1,8 @@
-import { CreateUserUseCase } from "../../../src/usecases/createuser/CreateUserUseCase";
-import { UserRepository } from "../../../src/repositories/UserRepository";
-import { User } from "../../../src/entities/User";
-import { UserAlreadyExistsError } from "../../../src/usecases/createuser/CreateUserError";
+import { User } from "../../../src/domain/entities/User";
+import { UserRepository } from "../../../src/domain/repositories/UserRepository";
+import { UserAlreadyExistsError } from "../../../src/domain/usecases/CreateUserError";
+import { CreateUserUseCase } from "../../../src/domain/usecases/CreateUserUseCase";
+
 
 class UserRepositoryMock implements UserRepository {
   findByEmail(email: string): Promise<User> {

@@ -1,9 +1,14 @@
-import { UserRepository } from "../UserRepository";
+import { UserRepository } from "../../domain/repositories/UserRepository";
 import { getRepository } from "typeorm";
-import { User } from "src/domain/user/User";
+import { User } from "../../domain/entities/User";
 
 export class UserRepositoryDatabase implements UserRepository {
   constructor() {}
+  async findAll(): Promise<Array<User>>{
+    const repository = getRepository(User);
+    const users = await repository.find();
+    return users;
+  }
 
   async findByEmail(email: string): Promise<User> {
     const repository = getRepository(User);

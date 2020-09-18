@@ -1,11 +1,11 @@
-import { User } from "src/domain/user/User";
+import { UserDTO } from "../UserDTO";
+import { User } from "../../entities/User";
 import { UserRepository } from "../../repositories/UserRepository";
-import { CreateUserRequestDTO } from "./CreateUserDTO";
 import { UserAlreadyExistsError } from "./CreateUserError";
 
 export class CreateUserUseCase {
   constructor(private usersRepository: UserRepository) {}
-  async execute(data: CreateUserRequestDTO): Promise<User> {
+  async execute(data: UserDTO): Promise<User> {
     const userAlreadyExists = await this.usersRepository.findByEmail(
       data.email
     );
