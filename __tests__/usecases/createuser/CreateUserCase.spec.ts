@@ -1,17 +1,8 @@
 import { User } from "../../../src/domain/entities/User";
 import { UserRepository } from "../../../src/domain/repositories/UserRepository";
-import { UserAlreadyExistsError } from "../../../src/domain/usecases/CreateUserError";
-import { CreateUserUseCase } from "../../../src/domain/usecases/CreateUserUseCase";
-
-
-class UserRepositoryMock implements UserRepository {
-  findByEmail(email: string): Promise<User> {
-    throw new Error("Method not implemented.");
-  }
-  save(user: User): Promise<User> {
-    throw new Error("Method not implemented.");
-  }
-}
+import { UserAlreadyExistsError } from "../../../src/domain/usecases/user/CreateUser/CreateUserError";
+import { CreateUserUseCase } from "../../../src/domain/usecases/user/CreateUser/CreateUserUseCase";
+import { UserRepositoryMock } from "../../mocks/UserRepositoryMock";
 
 describe("Testes Usecase CreateUserUseCase", () => {
   const userRepository = new UserRepositoryMock();
@@ -24,13 +15,12 @@ describe("Testes Usecase CreateUserUseCase", () => {
 
   it("Deve retornar um usuario", async () => {
     jest.spyOn(userRepository, "findByEmail").mockReturnValueOnce(null);
-    jest
-      .spyOn(userRepository, "save")
-      .mockReturnValueOnce(Promise.resolve(user));
+    jest.spyOn(userRepository, "save").mockResolvedValueOnce(user);
 
     const useCase = new CreateUserUseCase(userRepository);
     const newUser = await useCase.execute(user);
 
+    expect(newUser).toBeInstanceOf(User);
     expect(newUser.id).not.toBeNull();
   });
 

@@ -7,7 +7,7 @@
     "database": "market_list",
     "logging": false,
     "entities": [
-       "src/domain/**/*.ts"
+       "src/domain/entities/*.ts"
     ],
     "migrations": [
        "src/database/migrations/*.ts"

@@ -1,7 +1,9 @@
+import { Service } from "typedi";
 import { Convert } from "../../commons/Converter";
 import { User } from "../../domain/entities/User";
-import { UserDTO } from "../models/UserDTO";
+import { UserDTO } from "../../infra/models/UserDTO";
 
+@Service()
 export class UserDTOConverter implements Convert<User, UserDTO> {
   fromEntity(entity: User): UserDTO {
     return { name: entity.name, email: entity.email };

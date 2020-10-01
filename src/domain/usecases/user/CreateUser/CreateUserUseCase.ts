@@ -1,6 +1,6 @@
-import { UserDTO } from "../UserDTO";
-import { User } from "../../entities/User";
-import { UserRepository } from "../../repositories/UserRepository";
+import { UserDTO } from "../../../../external/models/UserDTO";
+import { User } from "../../../entities/User";
+import { UserRepository } from "../../../repositories/UserRepository";
 import { UserAlreadyExistsError } from "./CreateUserError";
 
 export class CreateUserUseCase {
